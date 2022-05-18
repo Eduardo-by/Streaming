@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{%block body %}
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="trending__product">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="section-title">
+                                {%if object.year%}
+                                <h4>{{object.year|capfirst}}</h4>
+                                {%endif%}
+                                {%if object.year%}
+                                <h4>{{object.year|capfirst}}</h4>
+                                {%endif%}
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="btn__all">
+                                <a href="#" class="primary-btn">Ver todos <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {%for filme in object_list %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="{{filme.imagem.url}}">
+                                </div>
+                                <div class="product__item__text">
+                                    <ul>
+                                        <li>{{filme.categoria}}</li>
+                                    </ul>
+                                    <h5><a href="{%url 'filmes:filme_detalhe' filme.slug %}">{{filme.titulo}}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                            <p class="ml-4" style="color:aliceblue ;">Não existe filmes nessa categoria.</p>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+{%endblock body%}

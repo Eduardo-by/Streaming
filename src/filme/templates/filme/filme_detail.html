@@ -1,0 +1,92 @@
+{%extends 'base.html'%}
+{%block body%}
+
+<body>
+    <!-- Anime Section Begin -->
+    <section class="anime-details spad">
+        <div class="container">
+            <div class="anime__details__content">
+                <div class="row">
+                    <div class="mt-4 col-lg-3">
+                        <div class="anime__details__pic set-bg" data-setbg="{{object.imagem.url}}">
+                            <div class="view"><i class="fa fa-eye"></i> {{object.views_count}}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="anime__details__text mt-4">
+                            <div class="anime__details__title">
+                                <h3  class="mb-2" style="color: aliceblue;">TRAILER:</h3>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="{{object.filme_trailer}}" allowfullscreen></iframe>
+                                </div>
+                                <h3 class="mt-4">{{object}}</h3>
+                                <span>Elenco: <a href="#">{{object.atores}}</a></span>
+                            </div>
+                            <p>{{object.descricao}}</p>
+                            <p>Idioma: <a href="{% url 'filmes:filme_lingua' object.lingua %}">{{object.lingua}}</a></p>
+                        </div>
+                        <div class="anime__details__btn ">
+                            <div class="row mt-4 col-lg-12 col-md-12 col-sm-12" >
+                                <div class="anime__details__title">
+                                    <h3 class="mr-3">Baixe agora:</h3> 
+                                </div>
+                                {% for link in links %}
+                                    {%if link.type == 'D' %}
+                                        <a href="{{link.link}}" class="watch-btn mr-2"><span> <i class="fa-solid fa-arrow-down"></i>Link {{forloop.counter}}</span></a>
+                                    {%endif%}
+                                {%endfor%}
+                            </div>
+                                <div class="row mt-4 col-lg-12 col-md-12 col-sm-12 ">
+                                    <div class="anime__details__title">
+                                        <h3 class="mr-3">Assista Agora:</h3> 
+                                    </div>
+                                    {% for link in links %}
+                                        {%if link.type == 'A' %}
+                                            <a href="{{link.link}}" class="watch-btn mr-2"><span><i class="fa-solid fa-tv"></i> Link {{forloop.counter}}</span></a>
+                                        {%endif%}
+                                    {%endfor%}
+                                </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="trending__product">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="ml-5 section-title">
+                                <h4>Relacionados</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        {%for filme in filmes_relacionados%}
+                        <div class="ml-5 col-lg-3 col-md-4 col-sm-4">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="{{filme.imagem.url}}">
+                                </div>
+                                <div class="product__item__text">
+                                    <ul>
+                                        <li>{{filme.categoria}}</li>
+                                    </ul>
+                                    <h5><a href="{%url 'filmes:filme_detalhe' filme.slug %}">{{filme.titulo}}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+    <!-- Anime Section End -->
+</body>
+{%endblock body%}

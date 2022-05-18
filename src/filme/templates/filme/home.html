@@ -1,0 +1,94 @@
+{%extends 'base.html'%}
+{%block body%}
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="trending__product">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="section-title">
+                                <h4>Mais Assistidos</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="btn__all">
+                                <a href="#" class="primary-btn">Ver Todos <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {%for filme in mais_assistidos %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="{{filme.imagem.url}}">
+                                    <div class="view"><i class="fa fa-eye"></i> {{filme.views_count}}</div>
+                                </div>
+                                <div class="product__item__text">
+                                    <ul>
+                                        <li>{{filme.categoria}}</li>
+                                    </ul>
+                                    <h5><a href="{%url 'filmes:filme_detalhe' filme.slug %}">{{filme.titulo}}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor %}
+                    </div>
+                </div>
+                <div class="trending__product">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="section-title">
+                                <h4>Récem Adicionados</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="btn__all">
+                                <a href="#" class="primary-btn">Ver Todos <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {%for filme in recem_adicionados %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="{{filme.imagem.url}}">
+                                    <div class="view"><i class="fa fa-eye"></i> {{filme.views_count}}</div>
+                                </div>
+                                <div class="product__item__text">
+                                    <ul>
+                                        <li>{{filme.categoria}}</li>
+                                    </ul>
+                                    <h5><a href="{%url 'filmes:filme_detalhe' filme.slug %}">{{filme.titulo}}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-8">
+                <div class="product__sidebar">
+                    <div class="product__sidebar__view">
+                        <div class="section-title">
+                            <h5>Mais Votados</h5>
+                        </div>
+                        <div class="filter__gallery">
+                            {%for filme in mais_votados %}
+                            <div class="product__sidebar__view__item set-bg mix day years"
+                                data-setbg="{{filme.imagem.url}}">
+                                <div class="view"><i class="fa fa-eye"></i> {{filme.views_count}}</div>
+                                <h5><a href="{%url 'filmes:filme_detalhe' filme.slug %}">{{filme.titulo}}</a></h5>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock body%}
+<!-- Product Section End -->
