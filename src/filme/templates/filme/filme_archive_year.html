@@ -16,11 +16,6 @@
                                 {%endif%}
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                            <div class="btn__all">
-                                <a href="#" class="primary-btn">Ver todos <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         {%for filme in object_list %}
@@ -41,6 +36,26 @@
                         {%endfor%}
                     </div>
                 </div>
+                {%if is_paginated %}
+                <div class="product__pagination">
+                    {%if page_obj.has_previous%}
+                    <a href="?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-arrow-left"></i></a>
+                    {%else%}
+                    {%endif%}
+                    {%for pages in page_obj.paginator.page_range%}
+                    {%if page_obj.number == page%}
+                    <a href="#" class="current-page">{{pages}}</a>
+                    {%else%}
+                    <a href="?page={{pages}}" class="current-page">{{pages}} </a>
+                    {%endif%}
+                    {%endfor%}
+
+                    {%if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-double-right"></i></a>
+                    {%else%}
+                    {%endif%}
+                </div>
+                {%endif%}
             </div>
         </div>
 </section>

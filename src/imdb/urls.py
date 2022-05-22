@@ -7,7 +7,7 @@ from filme.views import HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('filmes/', include('filme.urls', namespace='filmes')),
-    path('', HomeView.as_view()),
+    path('', HomeView.as_view() ,name='home'),
 ] 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

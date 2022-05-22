@@ -47,8 +47,8 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="{% url 'filmes:filme_lista' %}">Inicio</a></li>
-                                <li><a href="./categories.html">Categorias <span class="arrow_carrot-down"></span></a>
+                                <li class="active"><a href="{% url 'home' %}">Inicio</a></li>
+                                <li style="color:aliceblue ;">Categorias <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="{% url 'filmes:filme_categoria' 'romance' %}">Romance</a></li>
                                         <li><a href="{% url 'filmes:filme_categoria' 'ação' %}">Ação</a></li>
@@ -59,7 +59,7 @@
                                         <li><a href="{% url 'filmes:filme_categoria' 'suspense' %}">Suspense</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./categories.html">Linguas <span class="arrow_carrot-down"></span></a>
+                                <li style="color:aliceblue ;">Linguas <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="{% url 'filmes:filme_lingua' 'português' %}">Portugues</a></li>
                                         <li><a href="{% url 'filmes:filme_lingua' 'Inglês' %}">Ingles</a></li>
@@ -67,7 +67,7 @@
                                         <li><a href="{% url 'filmes:filme_lingua' 'Japônes' %}">Japônes</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./categories.html">Ano <span class="arrow_carrot-down"></span></a>
+                                <li style="color:aliceblue ;">Ano <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="{% url 'filmes:filme_ano' year=2017 %}">2017</a></li>
                                         <li><a href="{% url 'filmes:filme_ano' year=2018 %}">2018</a></li>
@@ -88,28 +88,6 @@
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
-    <!-- Header End -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero__slider owl-carousel">
-                {% for filme in slider_filme %}
-                <div class="hero__items set-bg mw-100"  style="height: 600px;"data-setbg="{{filme.banner.url}}">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">{{filme.categoria}}</div>
-                                <h2>{{filme.titulo}}</h2>
-                                <p>{{filme.descricao|truncatechars:255}}</p>
-                                <a href="{%url 'filmes:filme_detalhe' filme.slug %}"><span>Assista agora</span> <i
-                                        class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {%endfor%}
-            </div>
-        </div>
-    </section>
     <!-- Product Section Begin -->
     {%block body%}
     {%endblock body%}

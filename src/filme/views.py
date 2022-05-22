@@ -1,7 +1,7 @@
-from os import name
-from unicodedata import category
+from urllib.request import Request
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
+from django.core.paginator import Paginator
 
 from .models import  Filme ,FilmeLinks
 
@@ -20,11 +20,12 @@ class HomeView(ListView):
 
 class FilmeLista(ListView):
     model = Filme
-    paginate_by = 3
+    paginate_by = 15
 
 
 class FilmeDetalhe(DetailView):
     model =Filme
+
     
     def get_object(self):
         object = super(FilmeDetalhe, self).get_object()
@@ -42,7 +43,7 @@ class FilmeDetalhe(DetailView):
 class FilmeCategoria(ListView):
 
     model = Filme
-    paginate_by = 3
+    paginate_by = 15
 
     def get_queryset(self):
         self.categoria = self.kwargs['categoria']
@@ -57,7 +58,7 @@ class FilmeCategoria(ListView):
 class FilmeLingua(ListView):
 
     model = Filme
-    paginate_by = 3
+    paginate_by = 15
 
     def get_queryset(self):
         self.lingua = self.kwargs['lingua']
@@ -72,7 +73,7 @@ class FilmeLingua(ListView):
 class FilmePesquisa(ListView):
 
     model = Filme
-    paginate_by = 3
+    paginate_by = 15
 
     def get_queryset(self):
         query =self.request.GET.get('q')
@@ -83,6 +84,7 @@ class FilmePesquisa(ListView):
         return object_list
 
 class FilmeAno(YearArchiveView):
+    paginate_by = 15
     queryset = Filme.objects.all()
     date_field = 'ano_de_producao'
     make_object_list =True
